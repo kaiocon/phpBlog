@@ -45,8 +45,27 @@ class HomeController extends Controller
 	}
 	
 	public function deletePost($blogPost_id){
+		
 		$blogPost = blogPost::find($blogPost_id);
 		$blogPost->delete();
 		return redirect()->route('/')->with('status', 'Post Deleted!');
 	}
+	
+	public function editPost($blogPost_id){
+		
+		$blogPost = blogPost::find($blogPost_id);
+		return view('editPost', ['blogPost' => $blogPost]);
+	}
+
+	public function updatePost(Request $req, $blogPost_id){
+		
+		$blogPost = blogPost::find($blogPost_id);
+		$blogPost->postTitle = $req->input('postTitle');
+		$blogPost->postSummary = $req->input('postSummary');
+		$blogPost->postBody = $req->input('postBody');
+		$blogPost->save();
+		return redirect()->route('/')->with('status', 'Post Updated!');
+	}	
+	
+	
 }

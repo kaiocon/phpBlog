@@ -19,3 +19,5 @@ Route::get('/', 'BlogPostController@index')->name('/');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/newPost', 'HomeController@newPost')->name('newPost');
 Route::get('/deletePost/{blogPost_id}', 'HomeController@deletePost')->name('deletePost');
+Route::get('/editPost/{blogPost_id}', 'HomeController@editPost')->name('editPost');
+Route::post('/updatePost/{blogPost_id}', 'HomeController@updatePost')->name('updatePost');

@@ -22,6 +22,7 @@
                             </p>
                             <p class="card-text"><small class="text-muted">{{ $blogPost->postTime}}</small></p>
                         	@if (Auth::check())
+						<a href="{{ route('editPost', ['blogPost_id' => $blogPost->id]) }}" class="card-link btn btn-primary" >Edit</a>
 						<a href="{{ route('deletePost', ['blogPost_id' => $blogPost->id]) }}" class="card-link btn btn-danger" >Remove</a>
 						@endif
 						</div>
