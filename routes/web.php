@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'BlogPostController@index');
-Route::resource('blogPosts', 'BlogPostController');
+Route::get('/', 'BlogPostController@index')->name('/');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/newPost', 'HomeController@newPost')->name('newPost');
+Route::get('/deletePost/{blogPost_id}', 'HomeController@deletePost')->name('deletePost');

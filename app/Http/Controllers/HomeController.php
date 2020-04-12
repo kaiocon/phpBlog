@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\blogPost;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,4 +26,27 @@ class HomeController extends Controller
     {
         return view('home');
     }
+	
+	public function newPost(Request $req)
+	{
+		$req->validate([
+		'postTitle' => 'required',
+		'postSummary' => 'required',
+		'postBody' => 'required',
+		]);
+		
+		$newPost = new blogPost();
+		$newPost->postTitle = $req->input('postTitle');
+		$newPost->postSummary = $req->input('postSummary');
+		$newPost->postBody = $req->input('postBody');
+		$newPost->postTime = now();
+		$newPost->save();
+		return redirect()->route('/')->with('status', 'Post created!');
+	}
+	
+	public function deletePost($blogPost_id){
+		$blogPost = blogPost::find($blogPost_id);
+		$blogPost->delete();
+		return redirect()->route('/')->with('status', 'Post Deleted!');
+	}
 }
