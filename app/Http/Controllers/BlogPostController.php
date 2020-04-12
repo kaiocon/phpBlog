@@ -14,7 +14,8 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        //
+			$blogPosts = blogPost::latest()->get();
+			return view('welcome',  ['blogPosts' => $blogPosts]);
     }
 
     /**
