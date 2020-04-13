@@ -20,6 +20,7 @@ class CreateBlogPostsTable extends Migration
 			$table->longtext('postBody');
 			$table->datetime('postTime');
 			$table->string('postImage')->nullable();
+			$table->string('postAuthor');
             $table->timestamps();
         });
     }
