@@ -18,7 +18,7 @@
                             <h3 class="card-title">{{ $blogPost->postTitle }}</h2>
 							<h5 class="card-subtitle mb-2 text-muted">{{ $blogPost->postSummary }}</h5>
                             <p class="card-text">
-                                {{ $blogPost->postBody }}
+                                {!! $blogPost->postBody !!}
                             </p>
                             <p class="card-text"><small class="text-muted">{{ $blogPost->postTime}}</small></p>
                         	@if (Auth::check())

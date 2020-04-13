@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.postBody'
+    });
+</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -19,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label for="postBody">Post Body</label>
-                            <textarea class="form-control" rows="5" name="postBody" required>{{ $blogPost->postBody }}</textarea>
+                            <textarea class="form-control postBody" rows="5" name="postBody" required>{{ $blogPost->postBody }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Update Post</button>
                     </form>
