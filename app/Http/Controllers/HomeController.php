@@ -33,13 +33,24 @@ class HomeController extends Controller
 		'postTitle' => 'required',
 		'postSummary' => 'required',
 		'postBody' => 'required',
+		'postImage'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048',
 		]);
+		
 		
 		$newPost = new blogPost();
 		$newPost->postTitle = $req->input('postTitle');
 		$newPost->postSummary = $req->input('postSummary');
 		$newPost->postBody = $req->input('postBody');
 		$newPost->postTime = now();
+		
+		if($req->hasFile('postImage')){
+			$img = $req->file('postImage');
+			$imgName = time().'.'.$img->extension();
+			$destination = public_path('/img');
+			$img->move($destination, $imgName);
+			$newPost->postImage = $imgName;
+		}
+		
 		$newPost->save();
 		return redirect()->route('/')->with('status', 'Post created!');
 	}
@@ -63,6 +74,16 @@ class HomeController extends Controller
 		$blogPost->postTitle = $req->input('postTitle');
 		$blogPost->postSummary = $req->input('postSummary');
 		$blogPost->postBody = $req->input('postBody');
+		
+		if($req->hasFile('postImage')){
+
+			$img = $req->file('postImage');
+			$imgName = time().'.'.$img->extension();
+			$destination = public_path('/img');
+			$img->move($destination, $imgName);
+			$blogPost->postImage = $imgName;
+		}
+		
 		$blogPost->save();
 		return redirect()->route('/')->with('status', 'Post Updated!');
 	}	

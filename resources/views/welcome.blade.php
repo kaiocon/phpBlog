@@ -14,6 +14,9 @@
 					
 					@foreach($blogPosts as $blogPost)
                     <div class="card mb-3">
+					@if ($blogPost->postImage)
+						<img class="card-img-top" src="{{ asset('img/'.$blogPost->postImage) }}" alt=" ">
+					@endif
                         <div class="card-body">
                             <h3 class="card-title">{{ $blogPost->postTitle }}</h2>
 							<h5 class="card-subtitle mb-2 text-muted">{{ $blogPost->postSummary }}</h5>
@@ -28,6 +31,7 @@
 						</div>
                     </div>
 					@endforeach
+				{{ $blogPosts->links() }}
 				</div>
 			   </div>
 			</div>

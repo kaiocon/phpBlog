@@ -19,6 +19,7 @@ class CreateBlogPostsTable extends Migration
 			$table->text('postSummary');
 			$table->longtext('postBody');
 			$table->datetime('postTime');
+			$table->string('postImage')->nullable();
             $table->timestamps();
         });
     }
