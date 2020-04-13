@@ -14,7 +14,8 @@
 	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 	<script>
 		tinymce.init({
-        selector:'textarea.postBody'
+        selector:'textarea.postBody',
+		  content_style: '.mce-content-body{font:0.9em "Nunito", sans-serif; }'
 		});
 	</script>
 
