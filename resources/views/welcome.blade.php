@@ -23,7 +23,7 @@
                             <p class="card-text">
                                 {!! $blogPost->postBody !!}
                             </p>
-                            <p class="card-text"><small class="text-muted">{{ $blogPost->postTime}}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ $blogPost->postTime}} - {{ $blogPost->postAuthor}}</small></p>
                         	@if (Auth::check())
 						<a href="{{ route('editPost', ['blogPost_id' => $blogPost->id]) }}" class="card-link btn btn-primary" >Edit</a>
 						<a href="{{ route('deletePost', ['blogPost_id' => $blogPost->id]) }}" class="card-link btn btn-danger" >Remove</a>

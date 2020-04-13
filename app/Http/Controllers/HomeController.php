@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\blogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -42,6 +44,8 @@ class HomeController extends Controller
 		$newPost->postSummary = $req->input('postSummary');
 		$newPost->postBody = $req->input('postBody');
 		$newPost->postTime = now();
+		$newPost->postAuthor = Auth::user()->name;
+
 		
 		if($req->hasFile('postImage')){
 			$img = $req->file('postImage');
