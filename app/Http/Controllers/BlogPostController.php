@@ -17,6 +17,13 @@ class BlogPostController extends Controller
 			$blogPosts = blogPost::latest()->paginate(7);
 			return view('welcome',  ['blogPosts' => $blogPosts]);
     }
+	
+		public function searchPost(Request $req){
+		
+		$searchTerm = $req->input('Search');
+		$blogPosts = blogPost::where('postTitle', 'LIKE', '%' . $searchTerm. '%')->paginate(5);
+		return view('welcome',  ['blogPosts' => $blogPosts]);
+	}	
 
     /**
      * Show the form for creating a new resource.

@@ -19,6 +19,7 @@
 		});
 	</script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -46,6 +47,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+						<form class="form-inline mt-2 mt-md-0" action="{{ route('searchPost') }}" method="post">
+						{{ csrf_field() }}
+						<input class="form-control mr-sm-2" type="text" placeholder="Search" name="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
