@@ -11,5 +11,6 @@ $factory->define(blogPost::class, function (Faker $faker) {
 		'postSummary' => $faker->sentence,
 		'postBody' => $faker->paragraph,
 		'postTime' => $faker->dateTimeThisYear->format('Y-m-d H:i:s'),
+		'postAuthor' => $faker->name,
     ];
 });
