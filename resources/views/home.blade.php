@@ -17,7 +17,7 @@
                             <label for="postSummary">Summary</label>
                             <input type="text" class="form-control" placeholder="Post Summary" name="postSummary" required>
                         </div>
-					`	<div class="form-group">
+						<div class="form-group">
                             <label for="postImage">Banner</label>
                             <input type="file" class="form-control" name="postImage">
                         </div>

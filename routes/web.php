@@ -22,3 +22,7 @@ Route::get('/deletePost/{blogPost_id}', 'HomeController@deletePost')->name('dele
 Route::get('/editPost/{blogPost_id}', 'HomeController@editPost')->name('editPost');
 Route::post('/updatePost/{blogPost_id}', 'HomeController@updatePost')->name('updatePost');
 Route::post('/search/', 'BlogPostController@searchPost')->name('searchPost');
+
+Route::get('/users', 'HomeController@users')->name('users');
+Route::post('/newUser', 'HomeController@newUser')->name('newUser');
+Route::get('/deleteUser/{user_id}', 'HomeController@deleteUser')->name('deleteUser');

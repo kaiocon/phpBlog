@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use App\blogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+	
+	public function users()
+    {
+        $users = User::orderBy('id', 'ASC')->get();
+        return view('users', ['users' => $users]);
     }
 	
 	public function newPost(Request $req)
@@ -92,5 +98,40 @@ class HomeController extends Controller
 		return redirect()->route('/')->with('status', 'Post Updated!');
 	}	
 	
+	public function newUser(Request $req)
+	{
+		$req->validate([
+		'userName' => 'required',
+		'userEmail' => 'required',
+		'userPassword' => 'required',
+		'confirmPassword'     =>  'required',
+		]);
+		 $check = User::where('email', $req->input('userEmail'))->first(); 
+		if($req->input('userPassword') == $req->input('confirmPassword') && ! $check ){
+			$newUser = new User();
+			$newUser->name = $req->input('userName');
+			$newUser->email = $req->input('userEmail');
+			$newUser->password = bcrypt($req->input('userPassword'));
+			
+			$newUser->save();
+			return redirect()->route('users')->with('status', 'User created!');
+		}
+		else{
+			return redirect()->route('users')->with('redStatus', 'User not created!');
+		}
+
+	}
+	
+		public function deleteUser($user_id){
+			$user = User::find($user_id);
+		
+			if($user->id != Auth::user()->id){
+				$user->delete();
+				return redirect()->route('users')->with('status', 'User Deleted!');
+			}
+			else{
+				return redirect()->route('users')->with('redStatus', 'Invalid - Cannot delete current user!');
+			}
+	}
 	
 }
